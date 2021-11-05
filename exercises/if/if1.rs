@@ -1,6 +1,6 @@
 // if1.rs
 
-// I AM NOT DONE
+use std::cmp::Ordering;
 
 pub fn bigger(a: i32, b: i32) -> i32 {
     // Complete this function to return the bigger number!
@@ -8,6 +8,12 @@ pub fn bigger(a: i32, b: i32) -> i32 {
     // - another function call
     // - additional variables
     // Execute `rustlings hint if1` for hints
+
+    // https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html?highlight=compare#comparing-the-guess-to-the-secret-number
+    match a.cmp(&b) {
+        Ordering::Less => b,
+        _ => a,
+    }
 }
 
 // Don't mind this for now :)
