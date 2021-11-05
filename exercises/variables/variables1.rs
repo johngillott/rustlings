@@ -9,6 +9,7 @@
 // I AM NOT DONE
 
 fn main() {
-    x = 5;
+    // https://doc.rust-lang.org/book/ch03-02-data-types.html
+    let x = 5;
     println!("x has the value {}", x);
 }
