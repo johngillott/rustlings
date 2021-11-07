@@ -14,7 +14,7 @@ struct Package {
 impl Package {
     fn new(sender_country: String, recipient_country: String, weight_in_grams: i32) -> Package {
         if weight_in_grams <= 0 {
-            // Something goes here...
+            // https://doc.rust-lang.org/stable/book/ch09-03-to-panic-or-not-to-panic.html?highlight=panic#to-panic-or-not-to-panic
             panic!(
                 "Weight value must be greater than 0, got {}.",
                 weight_in_grams,
