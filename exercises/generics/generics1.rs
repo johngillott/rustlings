@@ -3,9 +3,10 @@
 
 // Execute `rustlings hint generics1` for hints!
 
-// I AM NOT DONE
+struct Item<T>(T);
 
 fn main() {
-    let mut shopping_list: Vec<?> = Vec::new();
-    shopping_list.push("milk");
+    let mut shopping_list = vec![];
+
+    shopping_list.push(Item("milk"));
 }
