@@ -17,6 +17,8 @@ pub struct ReportCard<T: Display> {
     pub student_age: u8,
 }
 
+// Trait bounds
+// https://doc.rust-lang.org/rust-by-example/generics/bounds.html
 impl<T: std::fmt::Display> ReportCard<T> {
     pub fn print(&self) -> String {
         format!(
