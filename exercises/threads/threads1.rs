@@ -6,26 +6,28 @@
 // of "waiting..." and the program ends without timing out when running,
 // you've got it :)
 
-// I AM NOT DONE
-
 use std::sync::Arc;
 use std::thread;
 use std::time::Duration;
 
+use std::sync::atomic::{AtomicU8, Ordering};
+
 struct JobStatus {
-    jobs_completed: u32,
+    jobs_completed: AtomicU8,
 }
 
 fn main() {
-    let status = Arc::new(JobStatus { jobs_completed: 0 });
+    let status = Arc::new(JobStatus {
+        jobs_completed: AtomicU8::new(0),
+    });
     let status_shared = status.clone();
     thread::spawn(move || {
         for _ in 0..10 {
             thread::sleep(Duration::from_millis(250));
-            status_shared.jobs_completed += 1;
+            status_shared.jobs_completed.fetch_add(1, Ordering::SeqCst);
         }
     });
-    while status.jobs_completed < 10 {
+    while status.jobs_completed.load(Ordering::Relaxed) < 10 {
         println!("waiting... ");
         thread::sleep(Duration::from_millis(500));
     }
